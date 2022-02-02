@@ -21,7 +21,7 @@ function addStudent(name) {
 function countStudents() {
 	if(student.length !== 1){
 		console.log("There are a total of " + student.length + " students enrolling.");
-	} else {
+	} else { 
 		console.log("There are a total of " + student.length + " student enrolling.");
 	}
 }
