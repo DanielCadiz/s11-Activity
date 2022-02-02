@@ -4,9 +4,10 @@ console.log('countStudents()');
 console.log('printStudents()');
 console.log('findStudent()');
 console.log('addSection()');
+console.log('removeStudent()');
 
 let student = [];
-//let searchedName;
+let sectionedStudents = [];
 
 function addStudent(name) {
 	if(name==null){
@@ -32,26 +33,6 @@ function printStudents() {
 	})
 }
 
-/*function searchStudent() {
-	let searchName = prompt('Find Student:');
-	searchedName = student.filter(function(name){
-		return name.toLowerCase().includes(searchName.toLowerCase());
-	})
-}
-
-function findStudent() {
-	searchStudent();
-	if (searchedName == false) {
-		console.log("No student found with the name " + searchName);
-	} else {
-		if (searchedName.length > 1){
-			console.log(searchedName.join(', ') + " are enrollees");
-		} else {
-			console.log(searchedName.toString() + " is an Enrollee");
-		}
-	}
-}*/
-
 function findStudent() {
 	let searchName = prompt('Find Student:');
 	let searchedName = student.filter(function(name){
@@ -70,20 +51,22 @@ function findStudent() {
 }
 
 function addSection(section) {
-	let sectionedStudents = student.map(function(name){
+	sectionedStudents = student.map(function(name){
 		return name + " - section " + section;
 	})
-	console.log(sectionedStudents);
+	return sectionedStudents;
 }
 
 function removeStudent(name) {
-	let firstUp = name[0].toUpperCase();
-	console.log('firstUp: '+ firstUp);
-	let newname = name.slice(0, 1, firstUp);
-	console.log('newname: '+ newname);
-	console.log(name[0].toUpperCase());
-	console.log(name);
-	let studentIndex = student.indexOf(newname);
-	console.log('index: '+ student);
-	return student.splice(studentIndex, 1);
+	let first = name.slice(0,1).toUpperCase();
+	let rest = name.slice(1,name.length);
+	let full = first+rest;
+	let index = student.indexOf(full);
+
+	if(index >= 0) {
+		student.splice(index, 1);
+		console.log(name + " was removed from the student's list.")
+	} else {
+		console.log("No student found.")
+	}
 }
